@@ -3,6 +3,7 @@ import type { Note, Language } from '../types';
 import { translations } from '../i18n';
 import { Sparkles, Trash2, Eye, Edit, Wand2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { transformDraft, suggestFileName } from '../services/gemini';
 import './Editor.css';
 
@@ -133,7 +134,9 @@ export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote
   const handleCheckboxToggle = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
     if (target.tagName === 'INPUT' && target.getAttribute('type') === 'checkbox') {
+      e.preventDefault();
       const checkbox = target as HTMLInputElement;
+      const isCurrentlyChecked = checkbox.checked;
       const lines = note.content.split('\n');
 
       // Find which line contains this checkbox
@@ -150,88 +153,77 @@ export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote
 
       if (lineIndex !== -1) {
         const line = lines[lineIndex];
-        const newLine = checkbox.checked
-          ? line.replace(/- \[ \]/, '- [x]')
-          : line.replace(/- \[x\]/i, '- [ ]');
-        lines[lineIndex] = newLine;
+        // Toggle based on current state (invert because preventDefault stops the default toggle)
+        const newLine = is
 
-        onUpdateNote({
-          ...note,
-          content: lines.join('\n'),
-          updatedAt: Date.now(),
-        });
-      }
-    }
-  };
+        return (
+          <div className="editor">
+            <div className="editor-header">
+              <div className="editor-title-group">
+                <input
+                  type="text"
+                  className="editor-title"
+                  placeholder={t.untitled}
+                  value={note.title}
+                  onChange={handleTitleChange}
+                />
+                {(!note.title || note.title === '') && note.content && (
+                  <button
+                    className="btn-icon btn-suggest-name"
+                    onClick={handleSuggestFileName}
+                    disabled={isSuggestingName}
+                    title={t.tooltips.suggest}
+                  >
+                    <Wand2 size={16} className={isSuggestingName ? 'spinning' : ''} />
+                  </button>
+                )}
+              </div>
+              <div className="editor-actions">
+                <button
+                  className={`btn-icon ${isPreview ? 'active' : ''}`}
+                  onClick={() => setIsPreview(!isPreview)}
+                  title={isPreview ? t.tooltips.edit : t.tooltips.preview}
+                >
+                  {isPreview ? <Edit size={18} /> : <Eye size={18} />}
+                </button>
+                <button
+                  className="btn-icon"
+                  onClick={handleTransformDraft}
+                  disabled={isTransforming}
+                  title={t.tooltips.transform}
+                >
+                  <Sparkles size={18} className={isTransforming ? 'spinning' : ''} />
+                </button>
+                <button
+                  className="btn-icon danger"
+                  onClick={() => onDeleteNote(note.id)}
+                  title={t.tooltips.delete}
+                >
+                  <Trash2 size={18} />
+                </button>
+              </div>
+            </div>
 
-  return (
-    <div className="editor">
-      <div className="editor-header">
-        <div className="editor-title-group">
-          <input
-            type="text"
-            className="editor-title"
-            placeholder={t.untitled}
-            value={note.title}
-            onChange={handleTitleChange}
-          />
-          {(!note.title || note.title === '') && note.content && (
-            <button
-              className="btn-icon btn-suggest-name"
-              onClick={handleSuggestFileName}
-              disabled={isSuggestingName}
-              title={t.tooltips.suggest}
-            >
-              <Wand2 size={16} className={isSuggestingName ? 'spinning' : ''} />
-            </button>
-          )}
-        </div>
-        <div className="editor-actions">
-          <button
-            className={`btn-icon ${isPreview ? 'active' : ''}`}
-            onClick={() => setIsPreview(!isPreview)}
-            title={isPreview ? t.tooltips.edit : t.tooltips.preview}
-          >
-            {isPreview ? <Edit size={18} /> : <Eye size={18} />}
-          </button>
-          <button
-            className="btn-icon"
-            onClick={handleTransformDraft}
-            disabled={isTransforming}
-            title={t.tooltips.transform}
-          >
-            <Sparkles size={18} className={isTransforming ? 'spinning' : ''} />
-          </button>
-          <button
-            className="btn-icon danger"
-            onClick={() => onDeleteNote(note.id)}
-            title={t.tooltips.delete}
-          >
-            <Trash2 size={18} />
-          </button>
-        </div>
-      </div>
+            {error && (
+              <div className="editor-error">
+                {error}
+              </div>
+            )}
 
-      {error && (
-        <div className="editor-error">
-          {error}
-        </div>
-      )}
-
-      <div className="editor-content">
-        {isPreview ? (
-          <div className="markdown-preview markdown-body" onClick={handleCheckboxToggle} onDoubleClick={() => setIsPreview(!isPreview)}>
-            <ReactMarkdown>{note.content}</ReactMarkdown>
+            <div className="editor-content">
+              {isPreview ? (
+                <div className="markdown-preview markdown-body" onClick={handleCheckboxToggle} onDoubleClick={() => setIsPreview(!isPreview)}>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{note.content}</ReactMarkdown>
+                </div>
+              ) : (
+                <textarea
+                  className="editor-textarea"
+                  placeholder={t.placeholder}
+                  value={note.content}
+                  onChange={handleContentChange}
+                />
+              )}
+            </div>
           </div>
-        ) : (
-          <textarea
-            className="editor-textarea"
-            placeholder={t.placeholder}
-            value={note.content}
-            onChange={handleContentChange}
-          />
-        )}
-      </div>
-    </div>
-  );
-};
+        );
+      };

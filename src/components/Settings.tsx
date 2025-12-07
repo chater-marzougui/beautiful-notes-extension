@@ -71,8 +71,9 @@ export const Settings: React.FC<SettingsProps> = ({ settings, onSave, onClose, l
                 className="settings-input"
               >
                 <option value="en">{t.languageOptions.en}</option>
-                <option value="es">{t.languageOptions.es}</option>
                 <option value="fr">{t.languageOptions.fr}</option>
+                <option value="ar">{t.languageOptions.ar}</option>
+                <option value="es">{t.languageOptions.es}</option>
               </select>
             </div>
 

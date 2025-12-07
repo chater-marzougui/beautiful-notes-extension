@@ -1,0 +1,67 @@
+{
+  "appTitle": "ملاحظات جميلة",
+  "sidebar": {
+    "myNotes": "ملاحظاتي",
+    "newNote": "ملاحظة جديدة",
+    "settings": "الإعدادات",
+    "help": "مساعدة",
+    "searchPlaceholder": "ابحث عن ملاحظة...",
+    "emptyState": "لا توجد ملاحظات",
+    "subtitle": "مستخدم محلي"
+  },
+  "editor": {
+    "placeholder": "ابدأ الكتابة...",
+    "untitled": "بدون عنوان",
+    "transforming": "جارٍ التحويل...",
+    "error": "خطأ",
+    "emptyStateTitle": "لم يتم تحديد ملاحظة",
+    "emptyStateText": "اختر ملاحظة من الشريط الجانبي أو أنشئ واحدة جديدة",
+    "tooltips": {
+      "suggest": "اقتراح اسم ملف بالذكاء الاصطناعي",
+      "preview": "معاينة",
+      "edit": "تحرير",
+      "transform": "تحويل المسودة بالذكاء الاصطناعي",
+      "delete": "حذف الملاحظة"
+    }
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "general": "عام",
+    "appearance": "المظهر",
+    "language": "اللغة",
+    "theme": "السمة",
+    "geminiApiKey": "مفتاح Gemini API",
+    "save": "حفظ الإعدادات",
+    "cancel": "إلغاء",
+    "languageOptions": {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "ar": "العربية"
+    },
+    "themeOptions": {
+      "dark": "داكن",
+      "light": "فاتح",
+      "midnight": "منتصف الليل"
+    },
+    "apiKeyHelp": "احصل على مفتاحك من Google AI Studio"
+  },
+  "help": {
+    "title": "المساعدة ومعلومات عنا",
+    "about": "معلومات عنا",
+    "madeBy": "صنع بواسطة",
+    "description": "ملاحظات جميلة هو امتداد قوي لمتصفح Chrome لتدوين الملاحظات مع ميزات مدعومة بالذكاء الاصطناعي ودعم متعدد اللغات وسمات جميلة.",
+    "repository": "مستودع GitHub",
+    "repoText": "هذا المشروع مفتوح المصدر! تحقق من الكود، ساهم، أو ضع نجمة على المستودع:",
+    "issues": "الإبلاغ عن مشكلة",
+    "issuesText": "وجدت خطأ أو لديك طلب ميزة؟ إليك كيفية الإبلاغ عنه:",
+    "step1": "انتقل إلى مستودع GitHub",
+    "step2": "انقر على علامة التبويب \"Issues\"",
+    "step3": "انقر على \"New Issue\"",
+    "step4": "صف الخطأ أو طلب الميزة بالتفصيل",
+    "createIssue": "إنشاء مشكلة جديدة",
+    "contact": "اتصل بنا",
+    "contactText": "للأسئلة أو الملاحظات، لا تتردد في التواصل عبر GitHub issues.",
+    "close": "إغلاق"
+  }
+}

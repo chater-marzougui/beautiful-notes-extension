@@ -1,0 +1,67 @@
+{
+  "appTitle": "Beautiful Notes",
+  "sidebar": {
+    "myNotes": "My Notes",
+    "newNote": "New Note",
+    "settings": "Settings",
+    "help": "Help",
+    "searchPlaceholder": "Find a note...",
+    "emptyState": "No notes found",
+    "subtitle": "local user"
+  },
+  "editor": {
+    "placeholder": "Start writing...",
+    "untitled": "Untitled",
+    "transforming": "Transforming...",
+    "error": "Error",
+    "emptyStateTitle": "No note selected",
+    "emptyStateText": "Select a note from the sidebar or create a new one",
+    "tooltips": {
+      "suggest": "Suggest filename with AI",
+      "preview": "Preview",
+      "edit": "Edit",
+      "transform": "Transform Draft with AI",
+      "delete": "Delete Note"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "general": "General",
+    "appearance": "Appearance",
+    "language": "Language",
+    "theme": "Theme",
+    "geminiApiKey": "Gemini API Key",
+    "save": "Save Settings",
+    "cancel": "Cancel",
+    "languageOptions": {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "ar": "العربية"
+    },
+    "themeOptions": {
+      "dark": "Dark",
+      "light": "Light",
+      "midnight": "Midnight"
+    },
+    "apiKeyHelp": "Get your key from Google AI Studio"
+  },
+  "help": {
+    "title": "Help & About",
+    "about": "About",
+    "madeBy": "Made by",
+    "description": "Beautiful Notes is a powerful Chrome extension for taking notes with AI-powered features, multi-language support, and beautiful themes.",
+    "repository": "GitHub Repository",
+    "repoText": "This project is open source! Check out the code, contribute, or star the repo:",
+    "issues": "Report an Issue",
+    "issuesText": "Found a bug or have a feature request? Here's how to report it:",
+    "step1": "Go to the GitHub repository",
+    "step2": "Click on \"Issues\" tab",
+    "step3": "Click \"New Issue\"",
+    "step4": "Describe the bug or feature request with details",
+    "createIssue": "Create New Issue",
+    "contact": "Contact",
+    "contactText": "For questions or feedback, feel free to reach out via GitHub issues.",
+    "close": "Close"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "appTitle": "Notas Hermosas",
+  "sidebar": {
+    "myNotes": "Mis Notas",
+    "newNote": "Nueva Nota",
+    "settings": "Ajustes",
+    "help": "Ayuda",
+    "searchPlaceholder": "Buscar una nota...",
+    "emptyState": "No se encontraron notas",
+    "subtitle": "usuario local"
+  },
+  "editor": {
+    "placeholder": "Empieza a escribir...",
+    "untitled": "Sin título",
+    "transforming": "Transformando...",
+    "error": "Error",
+    "emptyStateTitle": "Ninguna nota seleccionada",
+    "emptyStateText": "Selecciona una nota de la barra lateral o crea una nueva",
+    "tooltips": {
+      "suggest": "Sugerir nombre con IA",
+      "preview": "Vista previa",
+      "edit": "Editar",
+      "transform": "Transformar borrador con IA",
+      "delete": "Eliminar nota"
+    }
+  },
+  "settings": {
+    "title": "Ajustes",
+    "general": "General",
+    "appearance": "Apariencia",
+    "language": "Idioma",
+    "theme": "Tema",
+    "geminiApiKey": "Clave API Gemini",
+    "save": "Guardar Ajustes",
+    "cancel": "Cancelar",
+    "languageOptions": {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "ar": "العربية"
+    },
+    "themeOptions": {
+      "dark": "Oscuro",
+      "light": "Claro",
+      "midnight": "Medianoche"
+    },
+    "apiKeyHelp": "Obtén tu clave en Google AI Studio"
+  },
+  "help": {
+    "title": "Ayuda y Acerca de",
+    "about": "Acerca de",
+    "madeBy": "Hecho por",
+    "description": "Beautiful Notes es una poderosa extensión de Chrome para tomar notas con funciones impulsadas por IA, soporte multiidioma y temas hermosos.",
+    "repository": "Repositorio de GitHub",
+    "repoText": "¡Este proyecto es de código abierto! Consulta el código, contribuye o marca el repositorio:",
+    "issues": "Reportar un Problema",
+    "issuesText": "¿Encontraste un error o tienes una solicitud de función? Así es como reportarlo:",
+    "step1": "Ve al repositorio de GitHub",
+    "step2": "Haz clic en la pestaña \"Issues\"",
+    "step3": "Haz clic en \"New Issue\"",
+    "step4": "Describe el error o solicitud de función con detalles",
+    "createIssue": "Crear Nuevo Problema",
+    "contact": "Contacto",
+    "contactText": "Para preguntas o comentarios, no dudes en comunicarte a través de GitHub issues.",
+    "close": "Cerrar"
+  }
+}

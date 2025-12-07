@@ -1,0 +1,67 @@
+{
+  "appTitle": "Belles Notes",
+  "sidebar": {
+    "myNotes": "Mes Notes",
+    "newNote": "Nouvelle Note",
+    "settings": "Paramètres",
+    "help": "Aide",
+    "searchPlaceholder": "Chercher une note...",
+    "emptyState": "Aucune note trouvée",
+    "subtitle": "utilisateur local"
+  },
+  "editor": {
+    "placeholder": "Commencez à écrire...",
+    "untitled": "Sans titre",
+    "transforming": "Transformation...",
+    "error": "Erreur",
+    "emptyStateTitle": "Aucune note sélectionnée",
+    "emptyStateText": "Sélectionnez une note dans la barre latérale ou créez-en une nouvelle",
+    "tooltips": {
+      "suggest": "Suggérer un nom avec IA",
+      "preview": "Aperçu",
+      "edit": "Éditer",
+      "transform": "Transformer le brouillon avec IA",
+      "delete": "Supprimer la note"
+    }
+  },
+  "settings": {
+    "title": "Paramètres",
+    "general": "Général",
+    "appearance": "Apparence",
+    "language": "Langue",
+    "theme": "Thème",
+    "geminiApiKey": "Clé API Gemini",
+    "save": "Sauvegarder",
+    "cancel": "Annuler",
+    "languageOptions": {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "ar": "العربية"
+    },
+    "themeOptions": {
+      "dark": "Sombre",
+      "light": "Clair",
+      "midnight": "Minuit"
+    },
+    "apiKeyHelp": "Obtenez votre clé sur Google AI Studio"
+  },
+  "help": {
+    "title": "Aide et À propos",
+    "about": "À propos",
+    "madeBy": "Créé par",
+    "description": "Beautiful Notes est une extension Chrome puissante pour prendre des notes avec des fonctionnalités alimentées par IA, support multilingue et de beaux thèmes.",
+    "repository": "Dépôt GitHub",
+    "repoText": "Ce projet est open source ! Consultez le code, contribuez ou mettez une étoile au dépôt :",
+    "issues": "Signaler un Problème",
+    "issuesText": "Vous avez trouvé un bug ou avez une demande de fonctionnalité ? Voici comment le signaler :",
+    "step1": "Allez sur le dépôt GitHub",
+    "step2": "Cliquez sur l'onglet \"Issues\"",
+    "step3": "Cliquez sur \"New Issue\"",
+    "step4": "Décrivez le bug ou la demande de fonctionnalité avec des détails",
+    "createIssue": "Créer un Nouveau Problème",
+    "contact": "Contact",
+    "contactText": "Pour des questions ou des commentaires, n'hésitez pas à nous contacter via GitHub issues.",
+    "close": "Fermer"
+  }
+}

@@ -8,7 +8,7 @@ export interface Note {
 }
 
 export type Theme = 'dark' | 'light' | 'midnight';
-export type Language = 'en' | 'es' | 'fr';
+export type Language = 'en' | 'es' | 'fr' | 'ar';
 
 export interface AppSettings {
   geminiApiKey?: string;

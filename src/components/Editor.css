@@ -1,129 +1,141 @@
 .editor {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background: var(--bg-primary);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--bg-primary);
 }
 
 .editor-empty {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  gap: var(--space-md);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    gap: var(--space-md);
 }
 
 .editor-empty h3 {
-  margin: 0;
-  color: var(--text-primary);
+    margin: 0;
+    color: var(--text-primary);
 }
 
 .editor-header {
-  padding: var(--space-md);
-  border-bottom: 1px solid var(--border-subtle);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-md);
+    padding: var(--space-md);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
 }
 
 .editor-title-group {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
 }
 
 .editor-title {
-  flex: 1;
-  font-size: var(--text-xl);
-  font-weight: 600;
-  background: transparent;
-  border: none;
-  color: var(--text-primary);
-  padding: 0;
+    flex: 1;
+    font-size: var(--text-xl);
+    font-weight: 600;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    padding: 0;
 }
 
 .editor-title:focus {
-  outline: none;
-  box-shadow: none;
+    outline: none;
+    box-shadow: none;
 }
 
 .btn-suggest-name {
-  opacity: 0.6;
-  transition: opacity var(--transition-fast);
+    opacity: 0.6;
+    transition: opacity var(--transition-fast);
 }
 
 .btn-suggest-name:hover {
-  opacity: 1;
+    opacity: 1;
 }
 
 .editor-actions {
-  display: flex;
-  gap: var(--space-xs);
+    display: flex;
+    gap: var(--space-xs);
 }
 
 .btn-icon.active {
-  background: var(--bg-active);
-  color: var(--accent-primary);
+    background: var(--bg-active);
+    color: var(--accent-primary);
 }
 
 .btn-icon.danger:hover {
-  background: var(--error);
-  color: white;
+    background: var(--error);
+    color: white;
 }
 
 .editor-error {
-  padding: var(--space-md);
-  background: rgba(239, 68, 68, 0.1);
-  border-left: 3px solid var(--error);
-  color: var(--error);
-  font-size: var(--text-sm);
-  animation: fadeIn var(--transition-base);
+    padding: var(--space-md);
+    background: rgba(239, 68, 68, 0.1);
+    border-left: 3px solid var(--error);
+    color: var(--error);
+    font-size: var(--text-sm);
+    animation: fadeIn var(--transition-base);
 }
 
 .editor-content {
-  flex: 1;
-  overflow-y: auto;
-  padding: var(--space-lg);
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-lg);
 }
 
 .editor-textarea {
-  width: 100%;
-  height: 100%;
-  min-height: 500px;
-  background: transparent;
-  border: none;
-  color: var(--text-primary);
-  font-size: var(--text-base);
-  font-family: var(--font-sans);
-  line-height: 1.7;
-  resize: none;
-  padding: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: var(--text-base);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    resize: none;
+    padding: 0;
 }
 
 .editor-textarea:focus {
-  outline: none;
-  box-shadow: none;
+    outline: none;
+    box-shadow: none;
 }
 
 .markdown-preview {
-  min-height: 500px;
-  animation: fadeIn var(--transition-base);
+    min-height: 500px;
+    animation: fadeIn var(--transition-base);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.markdown-preview a,
+.markdown-preview code,
+.markdown-preview pre {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .spinning {
-  animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
 }
