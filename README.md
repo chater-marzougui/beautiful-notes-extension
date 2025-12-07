@@ -12,7 +12,7 @@
 
 ---
 
-# � [Beautiful Notes]
+# Beautiful Notes
 
 **A smart, AI-powered note-taking extension for Chrome.**
 Built with ❤️ by [Chater Marzougui](https://github.com/chater-marzougui).
@@ -71,7 +71,7 @@ Built with ❤️ by [Chater Marzougui](https://github.com/chater-marzougui).
 - 🌑 **Premium Dark Mode**: A carefully crafted dark theme that's easy on the eyes.
 - 📝 **Rich Markdown**: Full support for headers, lists, code blocks, and more.
 - 📂 **Smart Organization**: Filter by tags, search globally, and manage your knowledge base.
-- � **Privacy Focused**: Your API keys and notes are stored locally in your browser.
+- 🔐 **Privacy Focused**: Your API keys and notes are stored locally in your browser.
 
 <div align="right">
   <a href="#readme-top">

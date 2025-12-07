@@ -4,6 +4,7 @@ import { storage } from './services/storage';
 import { Sidebar } from './components/Sidebar';
 import { Editor } from './components/Editor';
 import { Settings } from './components/Settings';
+import { Help } from './components/Help';
 import './App.css';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
   const [selectedNoteId, setSelectedNoteId] = useState<string | null>(null);
   const [settings, setSettings] = useState<AppSettings>({});
   const [showSettings, setShowSettings] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -23,7 +25,11 @@ function App() {
         const loadedSettings = await storage.getSettings();
         setNotes(loadedNotes);
         setSettings(loadedSettings);
-        
+
+        // Apply theme from settings or default to 'midnight'
+        const theme = loadedSettings.theme || 'midnight';
+        document.body.setAttribute('data-theme', theme);
+
         // Select first note if available
         if (loadedNotes.length > 0 && !selectedNoteId) {
           setSelectedNoteId(loadedNotes[0].id);
@@ -75,8 +81,15 @@ function App() {
 
   const handleSaveSettings = async (newSettings: AppSettings) => {
     setSettings(newSettings);
+    // Apply new theme immediately
+    if (newSettings.theme) {
+      document.body.setAttribute('data-theme', newSettings.theme);
+    }
     await storage.saveSettings(newSettings);
   };
+
+  // Default language to 'en' if not set
+  const currentLanguage = settings.language || 'en';
 
   const selectedNote = notes.find(note => note.id === selectedNoteId) || null;
 
@@ -97,22 +110,32 @@ function App() {
         onSelectNote={setSelectedNoteId}
         onNewNote={handleNewNote}
         onOpenSettings={() => setShowSettings(true)}
+        onOpenHelp={() => setShowHelp(true)}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
         isCollapsed={sidebarCollapsed}
         onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
+        language={currentLanguage}
       />
       <Editor
         note={selectedNote}
         onUpdateNote={handleUpdateNote}
         onDeleteNote={handleDeleteNote}
         apiKey={settings.geminiApiKey}
+        language={currentLanguage}
       />
       {showSettings && (
         <Settings
           settings={settings}
           onSave={handleSaveSettings}
           onClose={() => setShowSettings(false)}
+          language={currentLanguage}
+        />
+      )}
+      {showHelp && (
+        <Help
+          onClose={() => setShowHelp(false)}
+          language={currentLanguage}
         />
       )}
     </div>

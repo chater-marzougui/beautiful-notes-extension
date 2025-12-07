@@ -1,5 +1,6 @@
 import React from 'react';
-import type { Note } from '../types';
+import type { Note, Language } from '../types';
+import { translations } from '../i18n';
 import { Plus, Settings as SettingsIcon, ChevronLeft, Search, HelpCircle, StickyNote, Lightbulb, Calendar } from 'lucide-react';
 import './Sidebar.css';
 
@@ -9,10 +10,12 @@ interface SidebarProps {
     onSelectNote: (id: string) => void;
     onNewNote: () => void;
     onOpenSettings: () => void;
+    onOpenHelp: () => void;
     searchQuery: string;
     onSearchChange: (query: string) => void;
     isCollapsed: boolean;
     onToggleCollapse: () => void;
+    language: Language;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -21,11 +24,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
     onSelectNote,
     onNewNote,
     onOpenSettings,
+    onOpenHelp,
     searchQuery,
     onSearchChange,
     isCollapsed,
     onToggleCollapse,
+    language,
 }) => {
+    const t = translations[language].sidebar;
+
     // Filter notes based on search
     const filteredNotes = React.useMemo(() => {
         if (!searchQuery) return notes;
@@ -57,7 +64,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 <img className="profile-icon" src="icon128.png" alt="Profile" />
                 {!isCollapsed && (
                     <div className="header-info">
-                        <h2>My Notes</h2>
+                        <h2>{t.myNotes}</h2>
                     </div>
                 )}
             </div>
@@ -67,7 +74,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 {!isCollapsed && (
                     <input
                         type="text"
-                        placeholder="Find a note..."
+                        placeholder={t.searchPlaceholder}
                         value={searchQuery}
                         onChange={(e) => onSearchChange(e.target.value)}
                     />
@@ -77,7 +84,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <div className="notes-list">
                 {filteredNotes.length === 0 && !isCollapsed ? (
                     <div className="empty-state">
-                        <p>No notes found</p>
+                        <p>{t.emptyState}</p>
                     </div>
                 ) : (
                     filteredNotes.map((note) => {
@@ -87,7 +94,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                                 key={note.id}
                                 className={`note-item ${selectedNoteId === note.id ? 'active' : ''}`}
                                 onClick={() => onSelectNote(note.id)}
-                                title={isCollapsed ? note.title || 'Untitled' : undefined}
+                                title={isCollapsed ? note.title || t.newNote.replace('New', 'Untitled') : undefined}
                             >
                                 <div className="note-icon-box">
                                     <Icon size={isCollapsed ? 20 : 24} />
@@ -110,19 +117,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 <button
                     className={`btn-new-note ${isCollapsed ? 'icon-only' : ''}`}
                     onClick={onNewNote}
-                    title="New Note"
+                    title={t.newNote}
                 >
-                    {isCollapsed ? <Plus size={24} /> : 'New Note'}
+                    {isCollapsed ? <Plus size={24} /> : t.newNote}
                 </button>
 
                 <div className="sidebar-menu">
-                    <button className="menu-item" onClick={onOpenSettings} title="Settings">
+                    <button className="menu-item" onClick={onOpenSettings} title={t.settings}>
                         <SettingsIcon size={20} />
-                        {!isCollapsed && <span>Settings</span>}
+                        {!isCollapsed && <span>{t.settings}</span>}
                     </button>
-                    <button className="menu-item" title="Help">
+                    <button className="menu-item" onClick={onOpenHelp} title={t.help}>
                         <HelpCircle size={20} />
-                        {!isCollapsed && <span>Help</span>}
+                        {!isCollapsed && <span>{t.help}</span>}
                     </button>
                 </div>
             </div>

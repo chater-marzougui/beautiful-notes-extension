@@ -7,8 +7,13 @@ export interface Note {
   updatedAt: number;
 }
 
+export type Theme = 'dark' | 'light' | 'midnight';
+export type Language = 'en' | 'es' | 'fr';
+
 export interface AppSettings {
   geminiApiKey?: string;
+  theme?: Theme;
+  language?: Language;
 }
 
 export interface StorageData {

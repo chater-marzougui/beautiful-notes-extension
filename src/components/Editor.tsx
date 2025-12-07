@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import type { Note } from '../types';
+import type { Note, Language } from '../types';
+import { translations } from '../i18n';
 import { Sparkles, Trash2, Eye, Edit, Wand2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { transformDraft, suggestFileName } from '../services/gemini';
@@ -10,31 +11,34 @@ interface EditorProps {
   onUpdateNote: (note: Note) => void;
   onDeleteNote: (id: string) => void;
   apiKey?: string;
+  language: Language;
 }
 
-export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote, apiKey }) => {
-  const [isPreview, setIsPreview] = useState(false);
+export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote, apiKey, language }) => {
+  const [isPreview, setIsPreview] = useState(true);
   const [isTransforming, setIsTransforming] = useState(false);
   const [isSuggestingName, setIsSuggestingName] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const t = translations[language].editor;
 
   if (!note) {
     return (
       <div className="editor-empty">
         <Edit size={48} />
-        <h3>No note selected</h3>
-        <p>Select a note from the sidebar or create a new one</p>
+        <h3>{t.emptyStateTitle}</h3>
+        <p>{t.emptyStateText}</p>
       </div>
     );
   }
 
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newContent = e.target.value;
-    
+
     // Extract tags from content
     const tagMatches = newContent.match(/#(\w+)/g) || [];
     const tags = tagMatches.map(tag => tag.substring(1));
-    
+
     onUpdateNote({
       ...note,
       content: newContent,
@@ -69,7 +73,7 @@ export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote
 
     try {
       const suggestedName = await suggestFileName(note.content, apiKey);
-      
+
       onUpdateNote({
         ...note,
         title: suggestedName,
@@ -95,11 +99,11 @@ export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote
 
     try {
       const transformed = await transformDraft(note.content, apiKey);
-      
+
       // Extract tags from transformed content
       const tagMatches = transformed.match(/#(\w+)/g) || [];
       const tags = tagMatches.map(tag => tag.substring(1));
-      
+
       // Auto-suggest filename if title is empty
       let newTitle = note.title;
       if (!note.title || note.title === '') {
@@ -110,7 +114,7 @@ export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote
           console.error('Failed to suggest filename:', err);
         }
       }
-      
+
       onUpdateNote({
         ...note,
         title: newTitle,
@@ -119,7 +123,7 @@ export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote
         updatedAt: Date.now(),
       });
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to transform draft');
+      setError(err instanceof Error ? err.message : t.error);
       setTimeout(() => setError(null), 5000);
     } finally {
       setIsTransforming(false);
@@ -131,7 +135,7 @@ export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote
     if (target.tagName === 'INPUT' && target.getAttribute('type') === 'checkbox') {
       const checkbox = target as HTMLInputElement;
       const lines = note.content.split('\n');
-      
+
       // Find which line contains this checkbox
       let checkboxIndex = 0;
       const lineIndex = lines.findIndex(line => {
@@ -150,7 +154,7 @@ export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote
           ? line.replace(/- \[ \]/, '- [x]')
           : line.replace(/- \[x\]/i, '- [ ]');
         lines[lineIndex] = newLine;
-        
+
         onUpdateNote({
           ...note,
           content: lines.join('\n'),
@@ -167,7 +171,7 @@ export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote
           <input
             type="text"
             className="editor-title"
-            placeholder="Untitled"
+            placeholder={t.untitled}
             value={note.title}
             onChange={handleTitleChange}
           />
@@ -176,7 +180,7 @@ export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote
               className="btn-icon btn-suggest-name"
               onClick={handleSuggestFileName}
               disabled={isSuggestingName}
-              title="Suggest filename with AI"
+              title={t.tooltips.suggest}
             >
               <Wand2 size={16} className={isSuggestingName ? 'spinning' : ''} />
             </button>
@@ -186,7 +190,7 @@ export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote
           <button
             className={`btn-icon ${isPreview ? 'active' : ''}`}
             onClick={() => setIsPreview(!isPreview)}
-            title={isPreview ? 'Edit' : 'Preview'}
+            title={isPreview ? t.tooltips.edit : t.tooltips.preview}
           >
             {isPreview ? <Edit size={18} /> : <Eye size={18} />}
           </button>
@@ -194,14 +198,14 @@ export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote
             className="btn-icon"
             onClick={handleTransformDraft}
             disabled={isTransforming}
-            title="Transform Draft with AI"
+            title={t.tooltips.transform}
           >
             <Sparkles size={18} className={isTransforming ? 'spinning' : ''} />
           </button>
           <button
             className="btn-icon danger"
             onClick={() => onDeleteNote(note.id)}
-            title="Delete Note"
+            title={t.tooltips.delete}
           >
             <Trash2 size={18} />
           </button>
@@ -216,13 +220,13 @@ export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote
 
       <div className="editor-content">
         {isPreview ? (
-          <div className="markdown-preview markdown-body" onClick={handleCheckboxToggle}>
+          <div className="markdown-preview markdown-body" onClick={handleCheckboxToggle} onDoubleClick={() => setIsPreview(!isPreview)}>
             <ReactMarkdown>{note.content}</ReactMarkdown>
           </div>
         ) : (
           <textarea
             className="editor-textarea"
-            placeholder="Start typing... Use # for tags, - [ ] for checkboxes"
+            placeholder={t.placeholder}
             value={note.content}
             onChange={handleContentChange}
           />
