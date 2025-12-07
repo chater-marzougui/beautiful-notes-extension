@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Smart Notes",
+  "name": "Beautiful Notes",
   "version": "1.0.0",
   "description": "A smart note-taking extension with Markdown support and AI-powered draft transformation",
   "permissions": ["storage"],
