@@ -204,6 +204,6 @@ Project Link: [https://github.com/chater-marzougui/beautiful-notes-extension](ht
 [issues-shield]: https://img.shields.io/github/issues/chater-marzougui/beautiful-notes-extension.svg?style=for-the-badge
 [issues-url]: https://github.com/chater-marzougui/beautiful-notes-extension/issues
 [license-shield]: https://img.shields.io/github/license/chater-marzougui/beautiful-notes-extension.svg?style=for-the-badge
-[license-url]: https://github.com/chater-marzougui/beautiful-notes-extension/blob/master/LICENSE.txt
+[license-url]: https://github.com/chater-marzougui/beautiful-notes-extension/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/chater-marzougui-342125299/
