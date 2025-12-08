@@ -33,6 +33,7 @@ function App() {
         // Select first note if available
         if (loadedNotes.length > 0 && !selectedNoteId) {
           setSelectedNoteId(loadedNotes[0].id);
+          setSidebarCollapsed(true);
         }
       } catch (error) {
         console.error('Failed to load data:', error);
