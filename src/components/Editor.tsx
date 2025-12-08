@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { Note, Language } from '../types';
 import { translations } from '../i18n';
 import { Sparkles, Trash2, Eye, Edit, Wand2 } from 'lucide-react';
@@ -16,12 +16,17 @@ interface EditorProps {
 }
 
 export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote, apiKey, language }) => {
-  const [isPreview, setIsPreview] = useState(true);
+  const [isPreview, setIsPreview] = useState(note?.content ? true : false);
   const [isTransforming, setIsTransforming] = useState(false);
   const [isSuggestingName, setIsSuggestingName] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const t = translations[language].editor;
+
+  // Update preview mode when switching notes
+  useEffect(() => {
+    setIsPreview(note?.content ? true : false);
+  }, [note?.id]);
 
   if (!note) {
     return (
