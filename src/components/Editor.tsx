@@ -48,6 +48,19 @@ export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote
     });
   };
 
+  const handleTextareaKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    // Shift+Enter to enable preview mode
+    if (e.shiftKey && e.key === 'Enter') {
+      e.preventDefault();
+      setIsPreview(true);
+    }
+    // Ctrl+Shift+V to enable preview mode
+    if (e.ctrlKey && e.shiftKey && e.key === 'v') {
+      e.preventDefault();
+      setIsPreview(true);
+    }
+  };
+
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onUpdateNote({
       ...note,
@@ -253,6 +266,7 @@ export const Editor: React.FC<EditorProps> = ({ note, onUpdateNote, onDeleteNote
             placeholder={t.placeholder}
             value={note.content}
             onChange={handleContentChange}
+            onKeyDown={handleTextareaKeyDown}
           />
         )}
       </div>
